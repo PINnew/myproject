@@ -1,0 +1,13 @@
+<form id="newsletterForm">
+    <input type="text" name="subject" placeholder="Тема" required>
+    <textarea name="body" placeholder="Текст письма"></textarea>
+
+    <label>Выберите подписчиков:</label>
+    <select name="subscribers" multiple>
+        {% for subscriber in subscribers %}
+            <option value="{{ subscriber.id }}">{{ subscriber.email }}</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Создать рассылку</button>
+</form>

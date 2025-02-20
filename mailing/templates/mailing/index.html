@@ -1,0 +1,51 @@
+<!-- mailing/templates/mailing/index.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Рассылки</title>
+    <link rel="stylesheet" href="{% static 'mailing/css/mailing.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Email-рассылки</h1>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#newsletterModal">Создать рассылку</button>
+    </div>
+
+    <!-- Модальное окно -->
+    <div id="newsletterModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Закрыть"><span>&times;</span></button>
+                    <h4 class="modal-title">Новая рассылка</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="newsletterForm">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="subject">Тема:</label>
+                            <input type="text" class="form-control" id="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="html_content">Сообщение (HTML):</label>
+                            <textarea class="form-control" id="html_content" rows="5" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="scheduled_time">Дата и время отправки:</label>
+                            <input type="datetime-local" class="form-control" id="scheduled_time" required>
+                        </div>
+                        <button type="submit" class="btn btn-success">Создать рассылку</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="{% static 'mailing/js/mailing.js' %}"></script>
+</body>
+</html>

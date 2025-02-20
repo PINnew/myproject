@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ newsletter.subject }}</title>
+</head>
+<body>
+    <h1>{{ greeting }}</h1>     <!-- Используем приветствие для персонализации -->
+    <h2>{{ newsletter.subject }}</h2>
+    <div>
+        {{ newsletter.body|safe }}
+    </div>
+    <div>
+        <!-- Добавление трекера открытий -->
+        <img src="{% url 'track_open' newsletter.id subscriber.id %}" style="display:none;" alt="tracking pixel">
+
+        <!-- Пример ссылки с трекером кликов. Замените {{ your_link_url }} на фактический URL, который вы хотите отслеживать.-->
+        <a href="{% url 'track_click' newsletter.id subscriber.id %}?url={{ your_link_url }}" target="_blank">Перейти по ссылке</a>
+    </div>
+</body>
+</html>
